@@ -109,10 +109,11 @@ for address in hosts:
     ping = popen("ping -c 3 " + address).read()
 
     # only writes out results of ping if there is a response
-    if ping.find("100% packet loss") != -1:
+    if ping.find("100% packet loss") != -1 AND ping.find("Destination host") != -1:
         continue
     else:
         print(ping)
         fhand.write(ping)
 
 print("end of list")
+fhand.close()
